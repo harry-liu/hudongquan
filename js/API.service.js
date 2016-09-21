@@ -1,8 +1,14 @@
 var APIService = angular.module('APIService', []);
 
-APIService.factory('PublicURL', function(){
-  //return 'http://192.168.1.16/api/';
-  return 'http://hdq.hudongcn.com/api/';
+APIService.factory('PublicImageURL', function(){
+  return 'http://192.168.1.16';
+  //return 'http://hdq.hudongcn.com';
+  //return 'http://192.168.40.27';
+})
+
+APIService.factory('PublicURL', function(PublicImageURL){
+  return PublicImageURL+'/api/';
+  //return 'http://hdq.hudongcn.com/api/';
   //return 'http://192.168.40.27/api/';
 })
 

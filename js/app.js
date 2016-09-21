@@ -59,9 +59,6 @@ app.service('OpenAlertBox',function($uibModal,$q){
   }
 })
 
-//app.constant('ProductContImageReplace', 'http://192.168.1.16');
-app.constant('ProductContImageReplace', 'http://hdq.hudongcn.com');
-
 app.factory('NewOrder', [function(){
 	var order = {};
 	return {

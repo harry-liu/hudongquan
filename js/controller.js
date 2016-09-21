@@ -838,7 +838,7 @@ interactiveControllers.controller('DiscountDetailCtrl', function($scope,$rootSco
 	$scope.$emit('setBottomMenuImage','home');
 });
 
-interactiveControllers.controller('ProductDetailCtrl', function(productDetail,$scope,$route,FetchData,$sce,$rootScope,$location,AuthenticationService,ProductContImageReplace) {
+interactiveControllers.controller('ProductDetailCtrl', function(productDetail,$scope,$route,FetchData,$sce,$rootScope,$location,AuthenticationService,PublicImageURL) {
 	$scope.$emit('hideTM',true);
 	$scope.$emit('hideBM',false);
 	var change = {
@@ -851,7 +851,7 @@ interactiveControllers.controller('ProductDetailCtrl', function(productDetail,$s
 	$scope.images = [];
 	$scope.product = productDetail.data.production;
 	if($scope.product.cont){
-		$scope.thisCanBeusedInsideNgBindHtml = $sce.trustAsHtml($scope.product.cont.replace(/src=["]/g,'src="'+ProductContImageReplace));	
+		$scope.thisCanBeusedInsideNgBindHtml = $sce.trustAsHtml($scope.product.cont.replace(/src=["]/g,'src="'+PublicImageURL));	
 	}
 	for(var i = 0;i<$scope.product.imagesUrl.length;i++){
 		$scope.images[i] = {
@@ -979,7 +979,7 @@ interactiveControllers.controller('CommunityCtrl', function(communityList,$scope
 	}
 });
 
-interactiveControllers.controller('CommunityDetailCtrl', function(communityDetail,$route,$scope,$rootScope,$sce,ProductContImageReplace) {
+interactiveControllers.controller('CommunityDetailCtrl', function(communityDetail,$route,$scope,$rootScope,$sce,PublicImageURL) {
 	$scope.$emit('hideTM',true);
 	$scope.$emit('hideBM',false);
 	var change = {
@@ -998,7 +998,7 @@ interactiveControllers.controller('CommunityDetailCtrl', function(communityDetai
 
 	$scope.article = communityDetail.data.article;
 	$rootScope.loadingData = false;
-	$scope.thisCanBeusedInsideNgBindHtml = $sce.trustAsHtml(communityDetail.data.article.content.replace(/src=["]/g,'src="'+ProductContImageReplace));
+	$scope.thisCanBeusedInsideNgBindHtml = $sce.trustAsHtml(communityDetail.data.article.content.replace(/src=["]/g,'src="'+PublicImageURL));
 });
 
 interactiveControllers.controller('TeachCtrl', function($scope,$rootScope,$location) {
@@ -1134,7 +1134,7 @@ interactiveControllers.controller('PersonalDetailCtrl', function(OpenAlertBox,$s
     	else{    	
     		var url = 'user/edit';
     		var token = AuthenticationService.getAccessToken();
-    		var data = 'avatar='+$scope.user.avatarId+'&username='+$scope.user.username+'&card_id='+$scope.user.card_id;
+    		var data = 'avatar='+$scope.user.avatarId+'&username='+$scope.user.username+'&card_id='+$scope.user.card_id+'&alipay_account='+$scope.user.alipay_account;
     		PushData.push(url,data,token).then(function(data){
     			if(data.data.message == 'success'){
 					OpenAlertBox.openAlert('修改成功！').then(function(data){
