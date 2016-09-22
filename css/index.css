@@ -2072,6 +2072,29 @@ h1,h2,h3,h4,h5,h6{font-weight: normal !important;}
 	margin: 0;
 }
 
+.hc_takemoney .hc_number input {
+	font-size: 30px;
+	color: #ff9000 !important;
+	line-height: 50px;
+	outline: none;
+}
+
+.hc_takemoney .hc_number input::-webkit-input-placeholder {
+    color: #ff9000;
+}
+.hc_takemoney .hc_number input:-moz-placeholder {
+    /* FF 4-18 */
+    color: #ff9000;
+}
+.hc_takemoney .hc_number input::-moz-placeholder {
+    /* FF 19+ */
+    color: #ff9000;
+}
+.hc_takemoney .hc_number input:-ms-input-placeholder {
+    /* IE 10+ */
+    color: #ff9000;
+}
+
 .hc_takemoney .hc_number p {
 	font-size: 30px;
 	color: #ff9000;
