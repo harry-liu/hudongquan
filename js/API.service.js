@@ -1,16 +1,16 @@
 var APIService = angular.module('APIService', []);
 
 APIService.factory('PublicImageURL', function(){
-  return 'http://192.168.1.16';
-  //return 'http://hdq.hudongcn.com';
+  //return 'http://192.168.1.16';
+  return 'http://hdq.hudongcn.com';
   //return 'http://192.168.40.27';
-})
+});
 
 APIService.factory('PublicURL', function(PublicImageURL){
   return PublicImageURL+'/api/';
   //return 'http://hdq.hudongcn.com/api/';
   //return 'http://192.168.40.27/api/';
-})
+});
 
 //save token into localstorage
 APIService.factory('AuthenticationService', function(locals) {
@@ -135,7 +135,7 @@ APIService.factory('PushData', ['$http','PublicURL','Upload',function($http,Publ
             });
         }
     } 
-}])
+}]);
 
 APIService.factory('LogService', function LogService($http,PublicURL,$location) {  
     return {  
@@ -257,4 +257,4 @@ APIService.factory('ConfirmToken', ['AuthenticationService','$q','LogService','$
             return deferred.promise;
         }
     }
-}])
+}]);

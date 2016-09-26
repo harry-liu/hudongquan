@@ -1,6 +1,6 @@
 var interactiveControllers = angular.module('interactiveControllers', []);
 
-interactiveControllers.controller('BodyControl', function($scope,$window,locals,$location,$rootScope,FetchData,$timeout,$route,$q,FetchData,OpenAlertBox) {
+interactiveControllers.controller('BodyControl', function($scope,$window,locals,$location,$rootScope,$timeout,$route,$q,FetchData,OpenAlertBox) {
 
 	$scope.showTM = true;
 	$scope.showBM = true;
@@ -41,14 +41,14 @@ interactiveControllers.controller('BodyControl', function($scope,$window,locals,
 		else{
 			$window.history.back();
 		}
-	}
+	};
 	//$scope.goToSearch = function(){
 		//$window.location.href = "#search";
 		//$location.path('#search');
 	//}
 
 	$scope.addSearchItem = function(){
-		var list = locals.getObject("searchList","")
+		var list = locals.getObject("searchList","");
 		if($scope.searchInput){
 			if(list.length){
 				var findSameItem = false;
@@ -61,7 +61,7 @@ interactiveControllers.controller('BodyControl', function($scope,$window,locals,
 					var item = {
 						'id':list.length,
 						'content':$scope.searchInput
-					}
+					};
 					list.push(item);
 				}
 			}
@@ -69,12 +69,12 @@ interactiveControllers.controller('BodyControl', function($scope,$window,locals,
 				var item = {
 					'id':0,
 					'content':$scope.searchInput
-				}
+				};
 				list = [item];
 			}
 			locals.setObject("searchList",list);
 		}
-	}
+	};
 
 	$scope.hideCity = true;
 	$rootScope.hideBlackCover = true;
@@ -94,7 +94,7 @@ interactiveControllers.controller('BodyControl', function($scope,$window,locals,
 				//$scope.hideBodyOverflow = '';
 			}
 		}
-	}
+	};
 	$scope.toggleSort = function(){
 		if ($scope.hideSort == $scope.hideBlackCover) {
 			if($scope.hideBlackCover){
@@ -108,7 +108,7 @@ interactiveControllers.controller('BodyControl', function($scope,$window,locals,
 				//$scope.hideBodyOverflow = '';
 			}
 		}
-	}
+	};
 	$scope.closeCityOrSort = function(){
 		if($scope.hideCity == $scope.hideBlackCover){
 			$scope.hideCity = true;
@@ -120,7 +120,7 @@ interactiveControllers.controller('BodyControl', function($scope,$window,locals,
 			$rootScope.hideBlackCover = true;
 			//$scope.hideBodyOverflow = '';
 		}
-	}
+	};
 	$rootScope.$watch('hideBlackCover',function(){
 		if ($rootScope.hideBlackCover) {
 			$rootScope.hideBodyOverflow = '';
@@ -128,33 +128,33 @@ interactiveControllers.controller('BodyControl', function($scope,$window,locals,
 		else{
 			$rootScope.hideBodyOverflow = 'disable-overflow';
 		}
-	})
+	});
 	$scope.pushBookingForm = function(){
 		$scope.$broadcast ('pushBookingForm');
-	}
+	};
 	$scope.pushClientInformation = function(){
 		$scope.$broadcast ('pushClientInformation');
 		$rootScope.disableAllButton = true;
-	}
+	};
 	$scope.pushClientInformationEdit = function(){
 		$scope.$broadcast ('pushClientInformationEdit');
-	}
+	};
 	$scope.pushPersonalInformation = function(){
 		$scope.$broadcast ('pushPersonalInformation');
-	}
+	};
 	$scope.changeBookingDetail = function(){
 		$scope.$broadcast ('changeBookingDetail');
-	}
+	};
 	$scope.changeBookingInformation = function(){
 		$scope.$broadcast ('changeBookingInformation');
-	}
+	};
 	$scope.finishBookingQRPayment = function(){
 		$scope.$broadcast ('finishBookingQRPayment');
-	}
+	};
 
 	$scope.$on('setTM',function(e,data){
 		$scope.menus = data;
-	})
+	});
 
 	var devicePlatform = cordova.platformId;
 	if (devicePlatform == 'ios'||devicePlatform == 'android') {
@@ -176,7 +176,7 @@ interactiveControllers.controller('BodyControl', function($scope,$window,locals,
 						if(data == "ok"){
 							window.open(versionData.data.newVersion.url,'_system');
 						}
-					})
+					});
 					$rootScope.NewVersionUrl = versionData.data.newVersion.url;
 				}
 			});
@@ -193,7 +193,7 @@ interactiveControllers.controller('LoginCtrl', function(OpenAlertBox,$timeout,Sa
 	var change = {
 		type:3,
 		word:'登录'
-	}
+	};
 
 	$scope.sendSms = '发送验证码';
 	$scope.disableButton = false;
@@ -211,7 +211,7 @@ interactiveControllers.controller('LoginCtrl', function(OpenAlertBox,$timeout,Sa
 		    if($scope.counter == 1){
 		    	$scope.stop();
 		    }
-		}
+		};
 		var mytimeout = $timeout($scope.onTimeout,1000);
 
 		$scope.stop = function(){
@@ -220,7 +220,7 @@ interactiveControllers.controller('LoginCtrl', function(OpenAlertBox,$timeout,Sa
 			$scope.activeButton = '';
 		    $timeout.cancel(mytimeout);
 		}
-	}
+	};
 
 	$scope.getSms = function(){
 		if($scope.phoneNumber){
@@ -238,7 +238,7 @@ interactiveControllers.controller('LoginCtrl', function(OpenAlertBox,$timeout,Sa
 			//alert('请输入电话号码');
 			OpenAlertBox.openAlert('请输入电话号码');
 		}
-	}
+	};
 
 	$scope.login = function(){
 		if(typeof $scope.phoneNumber == 'undefined'){
@@ -255,7 +255,7 @@ interactiveControllers.controller('LoginCtrl', function(OpenAlertBox,$timeout,Sa
 				$location.path($rootScope.nextUrl||'/us').replace();
 			})
 		}
-	}
+	};
 
 	$scope.$emit('changeTM',change);
 });
@@ -273,7 +273,7 @@ interactiveControllers.controller('HomeCtrl', function(listData,$scope,$rootScop
 	$scope.$emit('setBottomMenuImage','home');
 	var change = {
 		type:1
-	}
+	};
 	$scope.$emit('changeTM',change);
 
 	$scope.myInterval = 6000;
@@ -306,7 +306,7 @@ interactiveControllers.controller('MenuCtrl', function(menuData,$scope,$rootScop
 	$scope.$emit('setBottomMenuImage','home');
 	var change = {
 		type:12
-	}
+	};
 	$scope.$emit('changeTM',change);
 	$scope.menus = menuData.data.categories;
 
@@ -316,7 +316,7 @@ interactiveControllers.controller('MenuCtrl', function(menuData,$scope,$rootScop
 		$scope.menuTitle = title;
 		$scope.secondMenus = subMenus;
 		$scope.menuID = id;
-	}
+	};
 
 	for(var menu in menuData.data.categories){
 		$scope.changeSubMenu(menuData.data.categories[menu].children,menuData.data.categories[menu].name,0);
@@ -334,7 +334,7 @@ interactiveControllers.controller('MyDiscountCtrl', function($scope,$rootScope) 
 	var change = {
 		type:3,
 		word:'我的折扣'
-	}
+	};
 	$scope.$emit('changeTM',change);
 
 	$scope.$emit('setBottomMenuImage','home');
@@ -350,33 +350,33 @@ interactiveControllers.controller('BookingListCtrl', function(PushData,$scope,$r
 			if(data.data.message == 'success'){
 				angular.forEach($filter('filter')($scope.bookingList,{'status':status,'has_read':0}),function(value,key){
 					value.has_read = 1;
-				})
+				});
 				$scope.updateNumberUnreadMessage();
 			}
 		})
-	}
+	};
 
 	$scope.getUnreadMessage = function(status){
 		var number = 0;
 		angular.forEach($filter('filter')($scope.bookingList,{'status':status,'has_read':0}),function(){
 			number++;
-		})
+		});
 		return number;
-	}
+	};
 
 	$scope.updateNumberUnreadMessage = function (){
 		$scope.auditedUnreadMessage = $scope.getUnreadMessage('1');
 		$scope.suditingUnreadMessage = $scope.getUnreadMessage('2');
 		$scope.finishedUnreadMessage = $scope.getUnreadMessage('3');
 		$scope.notPassUnreadMessage = $scope.getUnreadMessage('4');
-	}
+	};
 
 	$scope.$emit('hideTM',true);
 	$scope.$emit('hideBM',true);
 	var change = {
 		type:3,
 		word:'我的订单'
-	}
+	};
 	$scope.$emit('changeTM',change);
 	$scope.$emit('setBottomMenuImage','us');
 
@@ -396,7 +396,7 @@ interactiveControllers.controller('ClientListCtrl', function(clientListData,$sco
 	var change = {
 		type:8,
 		word:'我的客户'
-	}
+	};
 	$scope.$emit('changeTM',change);
 	
 
@@ -411,7 +411,7 @@ interactiveControllers.controller('ClientListCtrl', function(clientListData,$sco
 			}
 			console.log($scope.firstCharList);
 		}
-	}
+	};
 	$scope.goto = function(x){
         var newHash = x;
         if ($location.hash() !== newHash) {
@@ -419,10 +419,10 @@ interactiveControllers.controller('ClientListCtrl', function(clientListData,$sco
         }else {
           	$anchorScroll();
         }
-	}
+	};
 	$scope.goTo = function(url){
 		$location.path(url);
-	}
+	};
 
 	$scope.clients = clientListData.data.customers;
 	$scope.updateFirstCharList($filter('filter')($scope.clients,{'top':0}));
@@ -439,7 +439,7 @@ interactiveControllers.controller('ClientListCtrl', function(clientListData,$sco
 			$scope.currentClient = client;
 			$scope.bottom = 1;
 		}
-	}
+	};
 
 	$scope.pushTop = function(e){
 		e.preventDefault();
@@ -454,7 +454,7 @@ interactiveControllers.controller('ClientListCtrl', function(clientListData,$sco
 				$scope.updateFirstCharList($filter('filter')($scope.clients,{'top':0}));
 			}
 		})
-	}
+	};
 
 	$scope.pushBottom = function(e){
 		e.preventDefault();
@@ -469,7 +469,7 @@ interactiveControllers.controller('ClientListCtrl', function(clientListData,$sco
 				$scope.updateFirstCharList($filter('filter')($scope.clients,{'top':0}));
 			}
 		})
-	}
+	};
 
 	$scope.pullBack = function(e){
 		e.preventDefault();
@@ -485,7 +485,7 @@ interactiveControllers.controller('ClientImportCtrl', function($scope,$rootScope
 	var change = {
 		type:3,
 		word:'通讯录导入'
-	}
+	};
 	$scope.$emit('changeTM',change);
 
 	$scope.updateFirstCharList = function updateFirstCharList(list){
@@ -498,7 +498,7 @@ interactiveControllers.controller('ClientImportCtrl', function($scope,$rootScope
 			    }
 			}
 		}
-	}
+	};
 
 	$scope.contactList = mobileContacts.data;
 	$scope.updateFirstCharList($scope.contactList);
@@ -512,7 +512,7 @@ interactiveControllers.controller('ClientAddCtrl', function(fieldsData,OpenAlert
 	var change = {
 		type:9,
 		word:'添加客户'
-	}
+	};
 	$scope.$emit('changeTM',change);
 
 	$scope.fields = fieldsData.data.fields;
@@ -544,7 +544,7 @@ interactiveControllers.controller('ClientAddImportCtrl', function(fieldsData,Ope
 	var change = {
 		type:9,
 		word:'添加客户'
-	}
+	};
 	$scope.$emit('changeTM',change);
 
 	$scope.fields = fieldsData.data.fields;
@@ -585,7 +585,7 @@ interactiveControllers.controller('ClientChangeCtrl', function(clientData,OpenAl
 	var change = {
 		type:10,
 		word:'修改客户信息'
-	}
+	};
 	$scope.$emit('changeTM',change);
 
 	$scope.fields = clientData.data.fields;
@@ -617,7 +617,7 @@ interactiveControllers.controller('ClientHistoryCtrl', function(historyData,$sco
 	var change = {
 		type:3,
 		word:'成交记录'
-	}
+	};
 	$scope.$emit('changeTM',change);
 
 	$scope.orders = historyData.data.orders;
@@ -630,7 +630,7 @@ interactiveControllers.controller('ClientDetailCtrl', function(clientData,OpenAl
 	var change = {
 		type:3,
 		word:'客户详情'
-	}
+	};
 	$scope.$emit('changeTM',change);
 
 
@@ -639,7 +639,7 @@ interactiveControllers.controller('ClientDetailCtrl', function(clientData,OpenAl
 
 	$scope.goTo = function(url){
 		$location.path(url).replace();
-	}
+	};
 
 	$scope.deletClient = function(){
 		var id = $route.current.params.id;
@@ -690,7 +690,7 @@ interactiveControllers.controller('BookingChangeCtrl', function($scope,$rootScop
 	var change = {
 		type:14,
 		word:'订单详情'
-	}
+	};
 	$scope.$emit('changeTM',change);
 
 	$scope.fields = bookingDetailData.data.fields;
@@ -726,7 +726,7 @@ interactiveControllers.controller('QRPaymentCtrl', function($scope,$rootScope,ge
 	var change = {
 		type:3,
 		word:'二维码支付'
-	}
+	};
 	$scope.$emit('changeTM',change);
 
 	$scope.imageData = getQRCode.data.qrCode;
@@ -762,7 +762,7 @@ interactiveControllers.controller('QRPaymentFinishCtrl', function($scope,$rootSc
 	var change = {
 		type:15,
 		word:'交易详情'
-	}
+	};
 	$scope.$emit('changeTM',change);
 
 	$scope.bookinginfo = bookingDetailData.data;
@@ -780,7 +780,7 @@ interactiveControllers.controller('OfflinePaymentCtrl', function(paymentData,Ope
 	var change = {
 		type:3,
 		word:'线下支付'
-	}
+	};
 	$scope.$emit('changeTM',change);
 
 	$rootScope.loadingData = false;
@@ -798,10 +798,10 @@ interactiveControllers.controller('OfflinePaymentCtrl', function(paymentData,Ope
 	            $scope.imageID = data.data.id;
 	    	})
         }   
-    }
+    };
 
     $scope.submit = function(){
-    	var id = $route.current.params.id
+    	var id = $route.current.params.id;
     	var url = 'orders/instrument?id='+id+'&instrument='+$scope.imageID;
     	var token = AuthenticationService.getAccessToken();
     	FetchData.getData(url,token).then(function(data){
@@ -820,7 +820,7 @@ interactiveControllers.controller('DiscountCtrl', function($scope,$rootScope) {
 	var change = {
 		type:3,
 		word:'抢购'
-	}
+	};
 	$scope.$emit('changeTM',change);
 });
 
@@ -833,7 +833,7 @@ interactiveControllers.controller('DiscountDetailCtrl', function($scope,$rootSco
 	var change = {
 		type:3,
 		word:'详情'
-	}
+	};
 	$scope.$emit('changeTM',change);
 	$scope.$emit('setBottomMenuImage','home');
 });
@@ -844,7 +844,7 @@ interactiveControllers.controller('ProductDetailCtrl', function(productDetail,$s
 	var change = {
 		type:3,
 		word:'详情'
-	}
+	};
 	$scope.$emit('changeTM',change);
 	$scope.$emit('setBottomMenuImage','home');
 
@@ -870,7 +870,7 @@ interactiveControllers.controller('ProductBuyDetailCtrl', function(productBuyDet
 	var change = {
 		type:7,
 		word:'产品订单'
-	}
+	};
 	$scope.$emit('changeTM',change);
 
 	$scope.productoinAll = productBuyDetailData;
@@ -901,7 +901,7 @@ interactiveControllers.controller('ProductBuyDetailCtrl', function(productBuyDet
 				})
 			}
 		}
-	})
+	});
 
 	$scope.saveData = function(){
 		NewOrder.saveOrderData($scope.productoinAll);
@@ -916,7 +916,7 @@ interactiveControllers.controller('InsertUserCtrl', function(userListData,$windo
 	var change = {
 		type:3,
 		word:'选择客户'
-	}
+	};
 	$scope.$emit('changeTM',change);
 
 	$scope.updateFirstCharList = function updateFirstCharList(list){
@@ -928,7 +928,7 @@ interactiveControllers.controller('InsertUserCtrl', function(userListData,$windo
 			    }
 			}
 		}
-	}
+	};
 
 	$scope.getUserInfo = function(id){
 		var url = 'customers/view?id='+id;
@@ -949,7 +949,7 @@ interactiveControllers.controller('InsertUserCtrl', function(userListData,$windo
 			NewOrder.saveOrderData(allData);
 			$window.history.back();
 		})
-	}
+	};
 
 	$scope.clients = [];
 
@@ -964,7 +964,7 @@ interactiveControllers.controller('CommunityCtrl', function(communityList,$scope
 	var change = {
 		type:2,
 		buttonType:1
-	}
+	};
 	$scope.$emit('changeTM',change);
 
 	$scope.$emit('setBottomMenuImage','community');
@@ -973,7 +973,7 @@ interactiveControllers.controller('CommunityCtrl', function(communityList,$scope
 
 	$scope.goLeft = function(){
 		$location.path('/us');
-	}
+	};
 	$scope.goRight = function(){
 		$location.path('/home');
 	}
@@ -985,16 +985,16 @@ interactiveControllers.controller('CommunityDetailCtrl', function(communityDetai
 	var change = {
 		type:3,
 		word:'文章详情'
-	}
+	};
 	$scope.$emit('changeTM',change);
 
 	$scope.inputAreaStatus = false;
 	$scope.openInputArea = function(){
 		$scope.inputAreaStatus = true;
-	}
+	};
 	$scope.closeInputArea = function(){
 		$scope.inputAreaStatus = false;
-	}
+	};
 
 	$scope.article = communityDetail.data.article;
 	$rootScope.loadingData = false;
@@ -1009,14 +1009,14 @@ interactiveControllers.controller('TeachCtrl', function($scope,$rootScope,$locat
 	var change = {
 		type:2,
 		buttonType:2
-	}
+	};
 	$scope.$emit('changeTM',change);
 
 	$scope.$emit('setBottomMenuImage','community');
 
 	$scope.goLeft = function(){
 		$location.path('/us');
-	}
+	};
 	$scope.goRight = function(){
 		$location.path('/home');
 	}
@@ -1030,7 +1030,7 @@ interactiveControllers.controller('SearchCtrl', function($scope,locals,$rootScop
 	$scope.$emit('hideBM',false);
 	var change = {
 		type:5
-	}
+	};
 	$scope.$emit('changeTM',change);
 	if(locals.getObject("searchList","").length>0){
 		$scope.searchList = locals.getObject("searchList","").reverse();
@@ -1046,7 +1046,7 @@ interactiveControllers.controller('SearchListCtrl', function(productList,$locati
 	$scope.$emit('hideBM',false);
 	var change = {
 		type:6
-	}
+	};
 	$scope.$emit('changeTM',change);
 
 	$scope.dataList = productList.data.productions;
@@ -1060,7 +1060,7 @@ interactiveControllers.controller('ExampleCtrl', function(exampleData,$scope,$ro
 	var change = {
 		type:3,
 		word:'成交记录'
-	}
+	};
 	$scope.$emit('changeTM',change);
 
 	$scope.examples = exampleData.data.orders;
@@ -1076,7 +1076,7 @@ interactiveControllers.controller('ExampleDetailCtrl', function($scope,$rootScop
 	var change = {
 		type:3,
 		word:'成交详情'
-	}
+	};
 	$scope.$emit('changeTM',change);
 });
 
@@ -1100,7 +1100,7 @@ interactiveControllers.controller('PersonalDetailCtrl', function(OpenAlertBox,$s
 	var change = {
 		type:11,
 		word:'个人信息'
-	}
+	};
 	$scope.$emit('changeTM',change);
 	$scope.$emit('setBottomMenuImage','us');
 
@@ -1118,7 +1118,7 @@ interactiveControllers.controller('PersonalDetailCtrl', function(OpenAlertBox,$s
 		        $scope.user.avatarId = data.data.id;
         	})
         }   
-    }
+    };
 
     $rootScope.loadingData = false;
     $scope.user = personalData.data.user;
@@ -1157,7 +1157,7 @@ interactiveControllers.controller('AddAliPayCtrl', function($scope,$rootScope) {
 	var change = {
 		type:3,
 		word:'支付宝'
-	}
+	};
 	$scope.$emit('changeTM',change);
 });
 
@@ -1169,7 +1169,7 @@ interactiveControllers.controller('WithdrawCtrl', function($scope,$rootScope) {
 	var change = {
 		type:3,
 		word:'提现'
-	}
+	};
 	$scope.$emit('changeTM',change);
 	$scope.$emit('setBottomMenuImage','us');
 });
@@ -1182,7 +1182,7 @@ interactiveControllers.controller('WithdrawCompleteCtrl', function($scope,$rootS
 	var change = {
 		type:3,
 		word:'提现完成'
-	}
+	};
 	$scope.$emit('changeTM',change);
 	$scope.$emit('setBottomMenuImage','us');
 });
@@ -1195,7 +1195,7 @@ interactiveControllers.controller('SettingsCtrl', function(OpenAlertBox,$scope,$
 	var change = {
 		type:3,
 		word:'设置'
-	}
+	};
 	$scope.$emit('changeTM',change);
 	$scope.$emit('setBottomMenuImage','us');
 
@@ -1212,7 +1212,7 @@ interactiveControllers.controller('TestListCtrl', function($scope,$rootScope) {
 	var change = {
 		type:3,
 		word:'商品考试'
-	}
+	};
 	$scope.$emit('changeTM',change);
 
 	$scope.$watch("showFileter", function(newValue, oldValue) {
@@ -1233,7 +1233,7 @@ interactiveControllers.controller('TestDetailCtrl', function($scope,$rootScope) 
 	var change = {
 		type:3,
 		word:'考试'
-	}
+	};
 	$scope.$emit('changeTM',change);
 });
 
