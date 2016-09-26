@@ -30,7 +30,7 @@
 		</a>
 	</div>
 	<div class="row">
-		<a href="#/withdraw"><p class="col-xs-12 hc_moneytext hc_border_b">可提现金额<span>0.00</span>元</p></a>
+		<a href="" ng-click="checkAliPay()"><p class="col-xs-12 hc_moneytext hc_border_b">可提现金额<span>{{user.balance}}</span>元</p></a>
 	</div>
 	<div class="row hc_wbg">
 		<a class="col-xs-12 hc_khtitle" href="#/client_list" style="display: block;background-size: 19px;">
@@ -78,6 +78,4 @@
 			<div class="hc_arrow"></div>
 		</a>
 	</div>
-	
-	
 </div>

@@ -2,8 +2,8 @@
 	<div class="row hc_border_bp hc_mt">
 		<div class="col-xs-12 hc_bankcard">
 			<h1>支付宝账号</h1>
-			<p>张三<span class="pull-right" id="">
-				321231**************2132
+			<p>{{withdrawData.username}}<span class="pull-right" id="">
+				{{withdrawData.alipay_account}}
 			</span></p>
 		</div>
 	</div>
@@ -11,20 +11,22 @@
 		<div class="col-xs-12 hc_number">
 			<h1>提现金额</h1>
 			<p class=" hc_border_b">￥
-				<input placeholder="500">
+				<input placeholder="0" ng-model="withdrawTotal">
 			</p>
 		</div>
 		<div class="col-xs-12 hc_balance">
-			<p>可用余额<span id="">
-				￥600.00元
-			</span> &nbsp;&nbsp;&nbsp;&nbsp;手续费<span id="">
-				0.1%
-			</span></p>
+			<p>可用余额<span>
+				￥{{withdrawData.balance}}元
+			</span> &nbsp;&nbsp;&nbsp;&nbsp;
+				<!--手续费<span id="">-->
+				<!--0.1%-->
+			<!--</span>-->
+			</p>
 		</div>
 	</div>
 	<div class="row hc_mt">
 		<div class="col-xs-12 hc_txbtn">
-			<a href="#/withdraw_complete">提现</a>
+			<a href="" ng-click="withdraw()">提现</a>
 		</div>
 	</div>
 	

@@ -696,10 +696,7 @@ body {
 
 
 /*lk added*/
-
-
 /*intro page*/
-
 .container-fluid.lk-intro-container {
 	width: 100%;
 	height: 100%;
@@ -2431,10 +2428,7 @@ h1,h2,h3,h4,h5,h6{font-weight: normal !important;}
 
 
 /*w added*/
-
-
 /*withdraw complete page*/
-
 .w-pay-container {
 	margin-top: 44px;
 	background-color: #FFF;
@@ -2453,22 +2447,33 @@ h1,h2,h3,h4,h5,h6{font-weight: normal !important;}
 	width: 23px;
 }
 
+.w-pay-container .complete-btn{
+	border-radius: 3px;
+	background-color: #FFEB00;
+	text-align: center;
+	height: 40px;
+	color: black;
+	line-height: 40px;
+}
+
 
 /*æçŽ°è¯¦æƒ…depositsfinish*/
-
+.w-pay-container .w-dep-ul{
+	margin-bottom: 20px;
+	padding: 0;
+	border-top: 1px solid #DADADA;
+}
 .w-pay-container .w-depositfinish {
 	height: 180px;
 	background-color: #fff;
 	padding-top: 20px;
-	border-bottom: 1px solid #DADADA;
 	margin-left: -5px!important;
 	margin-right: -5px!important;
 }
 
 .w-pay-container .w-depositlist {
 	background-color: #fff;
-	margin-left: -5px!important;
-	margin-right: -5px!important;
+	padding: 0 15px;
 }
 
 .w-pay-container .w-depositfinish img {
@@ -2916,10 +2921,10 @@ h1,h2,h3,h4,h5,h6{font-weight: normal !important;}
 	width: 100px;
 	height: 22px;
 	transform:rotate(-45deg);
-	-ms-transform:rotate(-45deg)
--moz-transform:rotate(-45deg); 
--webkit-transform:rotate(-45deg);
--o-transform:rotate(-45deg);
+	-ms-transform:rotate(-45deg);
+	-moz-transform:rotate(-45deg);
+	-webkit-transform:rotate(-45deg);
+	-o-transform:rotate(-45deg);
 }
 
 .hxj_search .xj_search_left, .lk-home-container .xj_search_left{
@@ -3695,8 +3700,6 @@ border: 1px solid #ff0000; color: #FF0000; font-size: 10px !important;border-rad
 	width: -moz-calc(100% - 50px);
 	/* WebKit */
 	width: -webkit-calc(100% - 50px);
-	/* Opera */
-	width: -o-calc(100% - 50px);
 	/* Standard */
 	width: calc(100% - 50px);
 	height:50px;
@@ -3866,7 +3869,7 @@ border: 1px solid #ff0000; color: #FF0000; font-size: 10px !important;border-rad
 	float: left;
 	width: 30px;
 	height: 50px;
-	background: url(../img/mykh.png) no-repeat left center;
+	/*background: url(../img/mykh.png) no-repeat left center;*/
 	background-size: 20px;
 }
 
@@ -3904,7 +3907,7 @@ border: 1px solid #ff0000; color: #FF0000; font-size: 10px !important;border-rad
 }
 
 .hc_import_customer .hc-search input {
-	background: url('../imgs/menu/t_menu_find.png') 8px 5px no-repeat);
+	background: url('../imgs/menu/t_menu_find.png') 8px 5px no-repeat;
 	padding-left: 8px;
 	outline: medium;
 	border: none;

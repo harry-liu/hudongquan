@@ -25,6 +25,7 @@ interactiveControllers.controller('BodyControl', function($scope,$window,locals,
 		//top menu type 12:返回+首页搜索框
 		//top menu type 13:返回+文字+添加客户按钮
 		//top menu type 15:返回+文字+完成订单支付按钮
+		//top menu type 16:文字
 		$scope.topMenuContent = data;
 	});
 	$scope.$on('setBottomMenuImage', function(e,data){
@@ -1080,7 +1081,7 @@ interactiveControllers.controller('ExampleDetailCtrl', function($scope,$rootScop
 	$scope.$emit('changeTM',change);
 });
 
-interactiveControllers.controller('UsCtrl', function($scope,$rootScope,checkUserLogin,$location) {
+interactiveControllers.controller('UsCtrl', function($scope,$rootScope,checkUserLogin,$location,OpenAlertBox) {
 	$scope.$emit('hideTM',false);
 	$scope.$emit('hideBM',true);
 
@@ -1091,6 +1092,19 @@ interactiveControllers.controller('UsCtrl', function($scope,$rootScope,checkUser
 
 	$scope.goRight = function(){
 		$location.path('/community');
+	};
+	
+	$scope.checkAliPay = function () {
+		if($scope.user.alipay_account){
+			$location.path('/withdraw');
+		}
+		else{
+			OpenAlertBox.openConfirm('未绑定支付宝').then(function (data) {
+				if(data == 'ok'){
+					$location.path('/personal_detail');
+				}
+			})
+		}
 	}
 });
 
@@ -1161,9 +1175,7 @@ interactiveControllers.controller('AddAliPayCtrl', function($scope,$rootScope) {
 	$scope.$emit('changeTM',change);
 });
 
-interactiveControllers.controller('WithdrawCtrl', function($scope,$rootScope) {
-	$rootScope.loadingData = false;
-
+interactiveControllers.controller('WithdrawCtrl', function($scope,$rootScope,withdrawData,PushData,AuthenticationService,OpenAlertBox,$location) {
 	$scope.$emit('hideTM',true);
 	$scope.$emit('hideBM',false);
 	var change = {
@@ -1172,19 +1184,49 @@ interactiveControllers.controller('WithdrawCtrl', function($scope,$rootScope) {
 	};
 	$scope.$emit('changeTM',change);
 	$scope.$emit('setBottomMenuImage','us');
-});
 
-interactiveControllers.controller('WithdrawCompleteCtrl', function($scope,$rootScope) {
+	$scope.withdrawData = withdrawData.data;
 	$rootScope.loadingData = false;
 
+	$scope.withdraw = function () {
+		if($scope.withdrawTotal){
+			if($scope.withdrawTotal>$scope.withdrawData.balance){
+				OpenAlertBox.openAlert('提现金额不能大于可用余额');
+			}
+			else if($scope.withdrawTotal<0){
+				OpenAlertBox.openAlert('提现金额不能是负数');
+			}
+			else{
+				var url = 'user/withdrawal';
+				var token = AuthenticationService.getAccessToken();
+				var data = 'amount='+$scope.withdrawTotal;
+				PushData.push(url,data,token).then(function (data) {
+					if(data.data.message == 'success'){
+						$location.path('/withdraw_complete/'+$scope.withdrawTotal);
+					}
+				})
+			}
+		}
+		else {
+			OpenAlertBox.openAlert('请输入提现金额');
+		}
+
+	}
+});
+
+interactiveControllers.controller('WithdrawCompleteCtrl', function($scope,$rootScope,withdrawData,$route) {
 	$scope.$emit('hideTM',true);
 	$scope.$emit('hideBM',false);
 	var change = {
-		type:3,
-		word:'提现完成'
+		type:16,
+		word:'提现详情'
 	};
 	$scope.$emit('changeTM',change);
 	$scope.$emit('setBottomMenuImage','us');
+
+	$scope.withdrawData = withdrawData.data;
+	$scope.total = $route.current.params.total;
+	$rootScope.loadingData = false;
 });
 
 interactiveControllers.controller('SettingsCtrl', function(OpenAlertBox,$scope,$rootScope,AuthenticationService) {

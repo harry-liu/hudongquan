@@ -433,11 +433,25 @@ app.config(['$routeProvider', function($routeProvider) {
 	}).
 	when('/withdraw', {
 		templateUrl: 'withdraw.html',
-		controller: 'WithdrawCtrl'
+		controller: 'WithdrawCtrl',
+		resolve:{
+			withdrawData:function(FetchData,AuthenticationService){
+				var url = 'user/balance';
+				var token = AuthenticationService.getAccessToken();
+				return FetchData.getData(url,token);
+			}
+		}
 	}).
-	when('/withdraw_complete', {
+	when('/withdraw_complete/:total', {
 		templateUrl: 'withdraw_complete.html',
-		controller: 'WithdrawCompleteCtrl'
+		controller: 'WithdrawCompleteCtrl',
+		resolve:{
+			withdrawData:function(FetchData,AuthenticationService){
+				var url = 'user/balance';
+				var token = AuthenticationService.getAccessToken();
+				return FetchData.getData(url,token);
+			}
+		}
 	}).
 	when('/login', {
 		templateUrl: 'login.html',
