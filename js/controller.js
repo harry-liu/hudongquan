@@ -2,6 +2,7 @@ var interactiveControllers = angular.module('interactiveControllers', []);
 
 interactiveControllers.controller('BodyControl', function($scope,$window,locals,$location,$rootScope,$timeout,$route,$q,FetchData,OpenAlertBox) {
 
+
 	$scope.showTM = true;
 	$scope.showBM = true;
 	$scope.$on('hideTM', function(e,data){

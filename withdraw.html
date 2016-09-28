@@ -10,14 +10,15 @@
 	<div class="row hc_border_bp hc_mt">
 		<div class="col-xs-12 hc_number">
 			<h1>提现金额</h1>
-			<p class=" hc_border_b">￥
-				<input placeholder="0" ng-model="withdrawTotal">
+			<p class=" hc_border_b">
+				<span class="col-xs-1" style="padding:0">￥</span>
+				<input placeholder="0" ng-model="withdrawTotal" class="col-xs-11">
 			</p>
 		</div>
 		<div class="col-xs-12 hc_balance">
 			<p>可用余额<span>
 				￥{{withdrawData.balance}}元
-			</span> &nbsp;&nbsp;&nbsp;&nbsp;
+			</span>
 				<!--手续费<span id="">-->
 				<!--0.1%-->
 			<!--</span>-->
