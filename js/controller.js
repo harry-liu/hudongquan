@@ -160,31 +160,9 @@ interactiveControllers.controller('BodyControl', function($scope,$window,locals,
 
 	var devicePlatform = cordova.platformId;
 	if (devicePlatform == 'ios'||devicePlatform == 'android') {
-		function getVersion(){
-			return $q(function(resolve,reject){
-				cordova.getAppVersion.getVersionNumber(function (version) {
-					$rootScope.appVersion = version;
-				    resolve(version);
-				});
-			})
-		}
-
-		var promise = getVersion();
-		return promise.then(function(data){
-			var url = "version/view-group?type="+devicePlatform+"&version="+data;
-			FetchData.getPublicAPI(url).then(function(versionData){
-				if (versionData.data != "is latest") {
-					OpenAlertBox.openConfirm('升级新版本？').then(function(data){
-						if(data == "ok"){
-							window.open(versionData.data.newVersion.url,'_system');
-						}
-					});
-					$rootScope.NewVersionUrl = versionData.data.newVersion.url;
-				}
-			});
-		},function(reason){
-			alert(reason);
-		})
+		cordova.getAppVersion.getVersionNumber(function (version) {
+			$rootScope.appVersion = version;
+		});
 	}
 });
 
