@@ -119,11 +119,6 @@ body {
 }
 
 @font-face {
-	font-family: FZSJSJW;
-	src: url(../fonts/FZSJSJW.TTF);
-}
-
-@font-face {
 	font-family: shoujin;
 	src: url(../fonts/shoujin.ttf);
 }
