@@ -1169,10 +1169,10 @@ interactiveControllers.controller('WithdrawCtrl', function($scope,$rootScope,wit
 
 	$scope.withdraw = function () {
 		if($scope.withdrawTotal){
-			if($scope.withdrawTotal>$scope.withdrawData.balance){
+			if(+$scope.withdrawTotal>+$scope.withdrawData.balance){
 				OpenAlertBox.openAlert('提现金额不能大于可用余额');
 			}
-			else if($scope.withdrawTotal<0){
+			else if(+$scope.withdrawTotal<0){
 				OpenAlertBox.openAlert('提现金额不能是负数');
 			}
 			else{

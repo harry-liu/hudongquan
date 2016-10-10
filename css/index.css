@@ -3319,6 +3319,7 @@ h1,h2,h3,h4,h5,h6{font-weight: normal !important;}
 	width: 70px;
 	display: block;
 	margin: 0 auto;
+	background-size: cover;
 }
 
 .hxj_order .xj_orderlist {
