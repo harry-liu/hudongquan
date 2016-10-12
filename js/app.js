@@ -1,4 +1,4 @@
-var app = angular.module('hudongquan', ['interactiveControllers','ngRoute','ngAnimate','ui.bootstrap','ngTouch','ngFileUpload','hmTouchEvents','localStorageService','APIService','DataService']);
+var app = angular.module('hudongquan', ['interactiveControllers','ngRoute','ngAnimate','ui.bootstrap','ngTouch','ngFileUpload','hmTouchEvents','localStorageService','APIService','DataService','vjs.video']);
 
 app.directive('focusMe', function($timeout) {
 	return {
@@ -225,7 +225,24 @@ app.config(['$routeProvider', function($routeProvider) {
 	}).
 	when('/teach', {
 		templateUrl: 'teach.html',
-		controller: 'TeachCtrl'
+		controller: 'TeachCtrl',
+		resolve:{
+			videoListData:function(FetchData){
+				var url = 'videos';
+				return FetchData.getPublicAPI(url);
+			}
+		}
+	}).
+	when('/teach_detail/:id', {
+		templateUrl: 'teach_detail.html',
+		controller: 'TeachDetailCtrl',
+		resolve:{
+			videoData:function(FetchData,$route){
+				var id = $route.current.params.id;
+				var url = 'videos/view?id='+id;
+				return FetchData.getPublicAPI(url);
+			}
+		}
 	}).
 	when('/search', {
 		templateUrl: 'search.html',

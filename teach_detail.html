@@ -1,0 +1,55 @@
+
+    <div class="container-fluid wl-spdf-container">
+        <div class="row video">
+            <!--<video id="my-video" class="video-js" controls preload="auto" width="300" height="264" poster="MY_VIDEO_POSTER.jpg" data-setup="{}">-->
+                <!--<source src = "{{mp4Url}}" type='video/mp4'>-->
+                <!--<source src = "{{oggUrl}}" type='video/ogg'>-->
+                <!--<source src = "{{webmUrl}}" type='video/webm'>-->
+                <!--<p class="vjs-no-js">-->
+                <!--To view this video please enable JavaScript, and consider upgrading to a web browser that-->
+                <!--</p>-->
+            <!--</video>-->
+            <video class="video-js vjs-default-skin"
+                   controls preload="auto" poster=""
+                   vjs-video vjs-media="media" vjs-ratio="16:9">
+            </video>
+        </div>
+        <div class="row huicong">
+            <span class="text">
+                {{videoDetail.name}}
+            </span>
+            <span class="text_2">
+                {{videoDetail.description}}
+            </span>
+            <p class="pinlun">
+                <img src="imgs/pinglun.png">
+                <a>145评论</a>
+            </p>
+        </div>
+        <ul class="row new">
+            <li>
+                <span class="col-xs-2 touxiang">
+                <a>
+                    <img src="images/003UDjiXgy6VuT6o7Vbb5.jpg">
+                </a>
+                </span>
+                <span class="col-xs-7 pl">
+                     <span class="text_1">啊毛大碗面</span><br/>
+                     <span class="text_2">这个产品真心不错</span>
+                 </span>
+                <span class="col-xs-3 shijian">
+                    <span>2016-2-01</span>
+                </span>
+            </li>
+        </ul>
+        <div class="row inp">
+            <span class="col-xs-10">
+                <input type="text"/>
+            </span>
+            <span class="col-xs-2 feiji">
+                <a>
+                    <img src="imgs/feiji.png"/>
+                </a>
+            </span>
+        </div>
+    </div>

@@ -981,9 +981,7 @@ interactiveControllers.controller('CommunityDetailCtrl', function(communityDetai
 	$scope.thisCanBeusedInsideNgBindHtml = $sce.trustAsHtml(communityDetail.data.article.content.replace(/src=["]/g,'src="'+PublicImageURL));
 });
 
-interactiveControllers.controller('TeachCtrl', function($scope,$rootScope,$location) {
-	$rootScope.loadingData = false;
-
+interactiveControllers.controller('TeachCtrl', function($scope,$rootScope,$location,videoListData) {
 	$scope.$emit('hideTM',true);
 	$scope.$emit('hideBM',true);
 	var change = {
@@ -999,7 +997,58 @@ interactiveControllers.controller('TeachCtrl', function($scope,$rootScope,$locat
 	};
 	$scope.goRight = function(){
 		$location.path('/home');
-	}
+	};
+
+    $scope.videoList = videoListData.data.videos;
+    $rootScope.loadingData = false;
+});
+
+interactiveControllers.controller('TeachDetailCtrl', function($scope,$rootScope,videoData) {
+	$scope.$emit('hideTM',true);
+
+    $scope.$emit('hideBM',false);
+    var change = {
+		type:3,
+        word:'视频详情'
+	};
+    $scope.$emit('changeTM',change);
+
+    $scope.videoDetail = videoData.data.video;
+    for(var i = 0;i<$scope.videoDetail.urls.length;i++){
+        if($scope.videoDetail.urls[i].mime_type == "video/mp4"){
+            $scope.mp4Url = $scope.videoDetail.urls[i].url;
+        }
+        if($scope.videoDetail.urls[i].mime_type == "video/ogg"){
+            $scope.oggUrl = $scope.videoDetail.urls[i].url;
+        }
+        if($scope.videoDetail.urls[i].mime_type == "video/webm"){
+            $scope.webmUrl = $scope.videoDetail.urls[i].url;
+        }
+    }
+
+    $scope.media = {
+        sources: [
+            // {
+            //     src: $scope.oggUrl,
+            //     type: 'video/ogg'
+            // },
+            {
+                src: $scope.webmUrl,
+                type: 'video/webm'
+            }
+            // {
+            //     src: $scope.mp4Url,
+            //     type: 'video/mp4'
+            // }
+        ],
+        tracks: [
+            {
+                kind: 'subtitles',
+            }
+        ],
+        poster: ''
+    };
+    $rootScope.loadingData = false;
 });
 
 interactiveControllers.controller('SearchCtrl', function($scope,locals,$rootScope) {

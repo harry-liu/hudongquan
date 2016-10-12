@@ -3,78 +3,25 @@
 	<img src="imgs/teach/logo.jpg"width="100%" />
   </div>
  <div class="row xj_content">
- 	<div class="col-xs-6 xj_video">
- 		<a>
+ 	<div class="col-xs-6 xj_video" ng-repeat="video in videoList">
+ 		<a href="#/teach_detail/{{video.id}}">
  		<div class="xj_video_content">
- 			
+			<img src="{{video.previewUrl}}" alt="">
  		</div>
  	    <div class="xj_video_detail">
- 		<p class="p1">慧聪网</p>
- 		<p class="p2">自我管理与提升</p>
+ 		<p class="p1">{{video.name}}</p>
+ 		<p class="p2">{{video.description}}</p>
  		<img src="imgs/teach/bofang.png" width="15px"/>
  		</div>
  		</a>
  	</div>
- 	
- 	<div class="col-xs-6 xj_video">
- 		<a>
- 		<div class="xj_video_content">
- 			
- 		</div>
- 	    <div class="xj_video_detail">
- 		<p class="p1">慧聪网</p>
- 		<p class="p2">自我管理与提升</p>
- 		<img src="imgs/teach/bofang.png" width="15px"/>
- 		</div>
- 		</a>
- 	</div>
- 	<div class="col-xs-6 xj_video">
- 		<a>
- 		<div class="xj_video_content">
- 			
- 		</div>
- 	    <div class="xj_video_detail">
- 		<p class="p1">慧聪网</p>
- 		<p class="p2">自我管理与提升</p>
- 		<img src="imgs/teach/bofang.png" width="15px"/>
- 		</div>
- 		</a>
- 	</div>
- 	<div class="col-xs-6 xj_video">
- 		<a>
- 		<div class="xj_video_content">
- 			
- 		</div>
- 	    <div class="xj_video_detail">
- 		<p class="p1">慧聪网</p>
- 		<p class="p2">自我管理与提升</p>
- 		<img src="imgs/teach/bofang.png" width="15px"/>
- 		</div>
- 		</a>
- 	</div>
- 	<div class="col-xs-6 xj_video">
- 		<a>
- 		<div class="xj_video_content">
- 			
- 		</div>
- 	    <div class="xj_video_detail">
- 		<p class="p1">慧聪网</p>
- 		<p class="p2">自我管理与提升</p>
- 		<img src="imgs/teach/bofang.png" width="15px"/>
- 		</div>
- 		</a>
- 	</div>
- 	<div class="col-xs-6 xj_video">
- 		<a>
- 		<div class="xj_video_content">
- 			
- 		</div>
- 	    <div class="xj_video_detail">
- 		<p class="p1">慧聪网</p>
- 		<p class="p2">自我管理与提升</p>
- 		<img src="imgs/teach/bofang.png" width="15px"/>
- 		</div>
- 		</a>
- 	</div>
+	 <!--<video id="my-video" class="video-js" controls preload="auto" width="300" height="264" poster="MY_VIDEO_POSTER.jpg" data-setup="{}">-->
+		 <!--<source src="http://hudongquan.cdn.bcebos.com/2016/10/10/ArchitectVideo_512kb_1476086078409.mp4" type='video/mp4'>-->
+		 <!--<source src="http://hudongquan.cdn.bcebos.com/2016/10/10/ArchitectVideo_dvd_1476086078411.ogv" type='video/ogg'>-->
+		 <!--<source src="http://hudongquan.cdn.bcebos.com/2016/10/10/big-buck-bunny_trailer_1476088761280.webm" type='video/webm'>-->
+		 <!--<p class="vjs-no-js">-->
+			 <!--To view this video please enable JavaScript, and consider upgrading to a web browser that-->
+		 <!--</p>-->
+	 <!--</video>-->
  </div>
-</div> 
+</div>
