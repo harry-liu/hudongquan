@@ -1,8 +1,6 @@
 var interactiveControllers = angular.module('interactiveControllers', []);
 
 interactiveControllers.controller('BodyControl', function($scope,$window,locals,$location,$rootScope,$timeout,$route,$q,FetchData,OpenAlertBox) {
-
-
 	$scope.showTM = true;
 	$scope.showBM = true;
 	$scope.$on('hideTM', function(e,data){
@@ -1003,7 +1001,7 @@ interactiveControllers.controller('TeachCtrl', function($scope,$rootScope,$locat
     $rootScope.loadingData = false;
 });
 
-interactiveControllers.controller('TeachDetailCtrl', function($scope,$rootScope,videoData) {
+interactiveControllers.controller('TeachDetailCtrl', function($scope,$rootScope,videoData,ConfirmToken,$location,AuthenticationService,$route,PushData,OpenAlertBox) {
 	$scope.$emit('hideTM',true);
 
     $scope.$emit('hideBM',false);
@@ -1028,18 +1026,18 @@ interactiveControllers.controller('TeachDetailCtrl', function($scope,$rootScope,
 
     $scope.media = {
         sources: [
-            // {
-            //     src: $scope.oggUrl,
-            //     type: 'video/ogg'
-            // },
+            {
+                src: $scope.oggUrl,
+                type: 'video/ogg'
+            },
             {
                 src: $scope.webmUrl,
                 type: 'video/webm'
+            },
+            {
+                src: $scope.mp4Url,
+                type: 'video/mp4'
             }
-            // {
-            //     src: $scope.mp4Url,
-            //     type: 'video/mp4'
-            // }
         ],
         tracks: [
             {
@@ -1049,6 +1047,32 @@ interactiveControllers.controller('TeachDetailCtrl', function($scope,$rootScope,
         poster: ''
     };
     $rootScope.loadingData = false;
+	
+	$scope.pushComment = function () {
+        ConfirmToken.confirm().then(function(data){
+            if(!data){
+                $rootScope.nextUrl = $location.path();
+                $location.path('/login').replace();
+            }
+            else{
+                //alert('token valued');
+                var url = "videos/comment";
+                var token = AuthenticationService.getAccessToken();
+                var id = $route.current.params.id;
+                var data = 'id='+id+'&substance='+$scope.userComment;
+                PushData.push(url,data,token).then(function (data) {
+                    console.log(data);
+                    if(data.data.message == 'success'){
+                        OpenAlertBox.openAlert('提交评论成功！');
+                        $scope.userComment = '';
+                    }
+                    else{
+                        OpenAlertBox.openAlert('系统有错误，请稍后重试！');
+                    }
+                })
+            }
+        })
+	}
 });
 
 interactiveControllers.controller('SearchCtrl', function($scope,locals,$rootScope) {

@@ -39,23 +39,26 @@ var app = {
     receivedEvent: function(id) {
 
         if (cordova.platformId == 'android') {
-        	StatusBar.backgroundColorByHexString("#ffcc00");
+        	StatusBar.backgroundColorByHexString("#ffd500");
+            document.addEventListener("backbutton", function(e){
+                if(window.location.hash=='#/home'||window.location.hash=='#/community'||window.location.hash=='#/us'||window.location.hash=='#/disconnect'||window.location.hash=='#/teach'){
+                    e.preventDefault();
+                    navigator.app.exitApp();
+                } else if(window.location.hash=='#/login'){
+                    window.location.replace('#/home');
+                }
+                else {
+                    navigator.app.backHistory()
+                }
+            }, false);
         }
-
-        document.addEventListener("showkeyboard", function(){ alert("Keyboard is ON");}, false);
-    	document.addEventListener("hidekeyboard", function(){ alert("Keyboard is OFF");}, false);
-
-        document.addEventListener("backbutton", function(e){
-            if(window.location.hash=='#/home'||window.location.hash=='#/community'||window.location.hash=='#/us'||window.location.hash=='#/disconnect'||window.location.hash=='#/teach'){
-                e.preventDefault();
-                navigator.app.exitApp();
-            } else if(window.location.hash=='#/login'){
-                window.location.replace('#/home');
-            }
-            else {
-                navigator.app.backHistory()
-            }
-        }, false);
+        if (cordova.platformId == 'ios') {
+            StatusBar.backgroundColorByHexString("#ffd500");
+            StatusBar.overlaysWebView(false);
+            StatusBar.show();
+        }
+        // document.addEventListener("showkeyboard", function(){ alert("Keyboard is ON");}, false);
+    	// document.addEventListener("hidekeyboard", function(){ alert("Keyboard is OFF");}, false);
 
         var parentElement = document.getElementById('deviceready');
         var listeningElement = parentElement.querySelector('.loading-div');

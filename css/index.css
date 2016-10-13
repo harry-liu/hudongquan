@@ -8,6 +8,13 @@
 	box-sizing: border-box;
 }
 
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+	outline: none !important;
+}
+
 body {
 	-webkit-touch-callout: none;
 	/* prevent callout to copy image, etc when tap to hold */

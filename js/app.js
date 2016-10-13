@@ -57,7 +57,7 @@ app.service('OpenAlertBox',function($uibModal,$q){
   		});
   	})
   }
-})
+});
 
 app.factory('NewOrder', [function(){
 	var order = {};
@@ -77,7 +77,7 @@ app.factory('NewOrder', [function(){
 			}
 		}
 	}
-}])
+}]);
 
 app.run(['$rootScope', '$location','locals','AuthenticationService','FetchData','$anchorScroll','NewOrder',function($rootScope,$location,locals,AuthenticationService,FetchData,$anchorScroll,NewOrder){
 	$anchorScroll.yOffset = 44;   // always scroll by 50 extra pixels
@@ -118,7 +118,7 @@ app.service('SaveToken', ['AuthenticationService', function(AuthenticationServic
 		AuthenticationService.setRefreshToken(data.refresh_token);
 	}
 	return saveData;
-}])
+}]);
 
 app.config(['$routeProvider', function($routeProvider) {
 	$routeProvider.
@@ -366,16 +366,14 @@ app.config(['$routeProvider', function($routeProvider) {
 		    			    //data = JSON.stringify([{"name":"Harry ","number":"789"},{"name":"Test ","number":"120"},{"name":"Jess ","number":"550"}]);
 		    			    data = JSON.stringify(data);
 		    			    resolve(data);
-				    	};
-
-				    	function onError(contactError) {
+						}
+						function onError(contactError) {
 				    	    reject('无法获取联系人，请开启权限!');
 		    			    //var data = JSON.stringify([{"name":"Harry ","number":"789"},{"name":"Test ","number":"120"},{"name":"Jess ","number":"550"}]);
 		    			    //data = JSON.stringify(data);
 		    			    //resolve(data);
-				    	};
-
-				    	var options      = new ContactFindOptions();
+						}
+						var options      = new ContactFindOptions();
 				    	options.filter   = "";
 				    	options.multiple = true;
 				    	options.hasPhoneNumber = true;

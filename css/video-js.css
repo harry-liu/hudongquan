@@ -376,7 +376,13 @@ body.vjs-full-window {
     -webkit-transition: all 0.4s;
     -moz-transition: all 0.4s;
     -o-transition: all 0.4s;
-    transition: all 0.4s; }
+    transition: all 0.4s;
+    top: 37%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+}
 
 .vjs-big-play-centered .vjs-big-play-button {
     top: 50%;

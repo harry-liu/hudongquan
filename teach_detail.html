@@ -27,27 +27,27 @@
             </p>
         </div>
         <ul class="row new">
-            <li>
+            <li ng-repeat="comment in videoDetail.comments">
                 <span class="col-xs-2 touxiang">
                 <a>
-                    <img src="images/003UDjiXgy6VuT6o7Vbb5.jpg">
+                    <img src="{{comment.avatar}}">
                 </a>
                 </span>
                 <span class="col-xs-7 pl">
-                     <span class="text_1">啊毛大碗面</span><br/>
-                     <span class="text_2">这个产品真心不错</span>
+                     <span class="text_1">{{comment.username}}</span><br/>
+                     <span class="text_2">{{comment.substance}}</span>
                  </span>
                 <span class="col-xs-3 shijian">
-                    <span>2016-2-01</span>
+                    <span>{{comment.created_at|limitTo : 10}}</span>
                 </span>
             </li>
         </ul>
         <div class="row inp">
             <span class="col-xs-10">
-                <input type="text"/>
+                <input type="text" ng-model="userComment"/>
             </span>
             <span class="col-xs-2 feiji">
-                <a>
+                <a ng-click="pushComment()">
                     <img src="imgs/feiji.png"/>
                 </a>
             </span>
