@@ -162,6 +162,10 @@ body {
 	height:100vh;
 }
 
+.vjs-subtitles-button{
+	display:none;
+}
+
 /*lk added*/
 /*spinner*/
 .spinner{
@@ -1404,8 +1408,9 @@ body {
 }
 
 .hxj_jiaoxue .xj_video_content img{
-	height: 100px;
 	background-color: #CCCCCC;
+	min-width: 100%;
+	min-height: 100px;
 }
 
 .hxj_jiaoxue .xj_video_detail {
@@ -3863,7 +3868,7 @@ border: 1px solid #ff0000; color: #FF0000; font-size: 10px !important;border-rad
 
 .hc_import_customer {
 	min-height: 100vh;
-	background: #ffff;
+	background: #ffffff;
 	padding-top: 44px;
 	padding-bottom: 100px;
 }
@@ -4222,105 +4227,134 @@ border: 1px solid #ff0000; color: #FF0000; font-size: 10px !important;border-rad
 /*wl added*/
 /*static css*/
 .wl-spdf-container{
-	width: auto;
-	height: auto;
-	margin-top: 40px;
+    width: auto;
+    height: auto;
+    margin-top: 40px;
 }
 .wl-spdf-container .video{
-	background-color: #dcdcdc;
+    height: 200px;
+    background-color: #f6f6f6;
 }
 .wl-spdf-container .video .video_img{
-	width: 70px;
-	margin: 0 auto 0 auto;
-	display: block;
-	line-height: 180px;
+    width: 70px;
+    margin: 0 auto 0 auto;
+    display: block;
+    line-height: 180px;
 }
 .wl-spdf-container .huicong{
-	height: 125px;
-	padding: 17px 10px 0 10px ;
-	background-color: #fff;
+    height: 125px;
+    padding: 17px 10px 0 10px ;
+    background-color: #fff;
 }
 .wl-spdf-container .huicong .text{
-	font-size: 17px;
-	text-align: center;
-	display: block;
+    font-size: 17px;
+    text-align: center;
+    display: block;
 }
 .wl-spdf-container .huicong .text_2{
-	font-size: 12px;
-	margin-top: 10px;
-	display: block;
-	color: #a6a6a6;
-	line-height: 22px;
+    font-size: 12px;
+    margin-top: 10px;
+    display: block;
+    color: #a6a6a6;
+    line-height: 22px;
 }
 .wl-spdf-container .huicong .pinlun{
-	float: right;
+    float: right;
 }
 .wl-spdf-container .huicong .pinlun img{
-	width: 17px;
+    width: 17px;
 }
 .wl-spdf-container .huicong .pinlun a{
-	font-style: normal;
-	font-size: 11px;
-	color: #868686;
+    font-style: normal;
+    font-size: 11px;
+    color: #868686;
 }
 .wl-spdf-container .new{
-	padding: 0 0 14px 0;
-	background-color: #fff;
-	margin-bottom: 40px;
+    padding: 0 0 14px 0;
+    background-color: #fff;
+    margin-bottom: 40px;
 }
 .wl-spdf-container .new li{
-	min-height: 75px;
-	border-top: 1px solid #d1d1d1;
-	padding:10px 10px 10px 10px ;
+    min-height: 75px;
+    border-top: 1px solid #d1d1d1;
+    padding:10px 10px 10px 10px ;
 }
 .wl-spdf-container .new .touxiang{
-	position: relative;
+    position: relative;
 }
 .wl-spdf-container .new .touxiang img{
-	width: 35px;
-	height: 35px;
-	border-radius: 50%;
-	position: absolute;
-	left: 0;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
 }
 .wl-spdf-container .new .pl .text_1{
-	font-size: 11px;
-	color: #868686;
-	margin-top: 7px;
-	display: block;
+    font-size: 11px;
+    color: #868686;
+    margin-top: 7px;
+    display: block;
 }
 .wl-spdf-container .new .pl .text_2{
-	font-size: 13px;
-	color: #5a5a5a;
-	display: block;
-	margin-top: -10px;
+    font-size: 13px;
+    color: #5a5a5a;
+    display: block;
+    margin-top: -10px;
 }
 .wl-spdf-container .new .shijian{
-	position: relative;
+    position: relative;
 }
 .wl-spdf-container .new .shijian span{
-	position: absolute;
-	right: 0;
+    position: absolute;
+    right: 0;
 }
 .wl-spdf-container .inp{
-	background-color: #eeedeb;
-	height: 50px;
-	padding: 8px 8px 8px 0;
-	position: fixed;
-	bottom: 0;
-	width: 100%;
+    background-color: #eeedeb;
+    height: 50px;
+    padding: 8px 8px 8px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 .wl-spdf-container .inp input{
-	height: 35px;
-	width: 100%;
-	border: 1px solid #e0dee1;
-	border-radius: 6px;
-	padding-left: 10px;
-	float: left;
+    height: 35px;
+    width: 100%;
+    border: 1px solid #e0dee1;
+    border-radius: 6px;
+    padding-left: 10px;
+    float: left;
 }
 .wl-spdf-container .inp .feiji img{
-	width: 30px;
-	display: block;
-	margin:  3px auto 0 auto;
-	float: right;
+    width: 30px;
+    display: block;
+    margin:  3px -8px 0 auto;
+    float: right;
 }
+
+/*harry added*/
+/*zmop page*/
+.lk-zmop-container{
+	padding-top: 44px;
+	background-color: #f6f6f6;
+	min-height:100vh;
+}
+
+.lk-zmop-container .top-image-container{
+	text-align: center;
+}
+
+.lk-zmop-container .text-container{
+	background-color: white;
+	border-bottom:1px solid #dadada;
+}
+
+.lk-zmop-container .text-container div{
+	padding-top: 14px;
+	padding-bottom: 14px;
+	border-top: 1px solid #dadada;
+}
+
+.lk-zmop-container .text-container span{
+	font-size: 12px;
+}
+

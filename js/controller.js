@@ -1001,6 +1001,20 @@ interactiveControllers.controller('TeachCtrl', function($scope,$rootScope,$locat
     $rootScope.loadingData = false;
 });
 
+interactiveControllers.controller('TeachListCtrl', function($scope,$rootScope,$location,videoListData) {
+	$scope.$emit('hideTM',true);
+	$scope.$emit('hideBM',false);
+	var change = {
+		type:3,
+		word:'视频列表'
+	};
+	$scope.$emit('changeTM',change);
+
+	$scope.videoList = videoListData.data.videos;
+	$rootScope.loadingData = false;
+});
+
+
 interactiveControllers.controller('TeachDetailCtrl', function($scope,$rootScope,videoData,ConfirmToken,$location,AuthenticationService,$route,PushData,OpenAlertBox) {
 	$scope.$emit('hideTM',true);
 
@@ -1212,8 +1226,37 @@ interactiveControllers.controller('PersonalDetailCtrl', function(OpenAlertBox,$s
     			}
     		})
     	}
-    })
+    });
+
+	$scope.goToZMOP = function () {
+		if(true){
+			$location.path('/zmop/pass');
+		}
+		else{
+			$location.path('/zmop/fail');
+		}
+	}
 });
+
+interactiveControllers.controller('ZMOPDetailCtrl', function($scope,$rootScope,$routeParams) {
+	$scope.$emit('hideTM',true);
+	$scope.$emit('hideBM',false);
+	var change = {
+		type:3,
+		word:'芝麻信用实名验证'
+	};
+	$scope.$emit('changeTM',change);
+
+	if($routeParams.status == 'pass'){
+		$scope.pass = true;
+	}
+	else{
+		$scope.pass = false;
+	}
+
+	$rootScope.loadingData = false;
+});
+
 
 interactiveControllers.controller('AddAliPayCtrl', function($scope,$rootScope) {
 	$rootScope.loadingData = false;

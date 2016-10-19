@@ -59,7 +59,7 @@
 						<!-- <span class="w-myclient-top-message-color auto-hide-words"></span> -->
 						<span class="w-myclient-top-message-color" style="float:right;text-align:right">{{client.phone_number | limitTo : 15}}{{client.phone_number.length > 15 ? '...' : ''}}</span>
 						<span class="addr-span auto-hide-words">
-							{{'地址：'+client.company_addr}}
+							{{client.company_addr.length>0?'地址：'+client.company_addr:'地址：'}}
 						</span>
 					</div>
 				</li>
@@ -80,7 +80,7 @@
 							<!-- <span class="w-myclient-top-message-color auto-hide-words"></span> -->
 							<span class="w-myclient-top-message-color" style="float:right;text-align:right">{{client.phone_number | limitTo : 15}}{{client.phone_number.length > 15 ? '...' : ''}}</span>
 							<span class="addr-span auto-hide-words">
-								{{'地址：'+client.company_addr||'地址：'}}
+								{{client.company_addr.length>0?'地址：'+client.company_addr:'地址：'}}
 							</span>
 						</div>
 					</li>

@@ -13,7 +13,7 @@
 			<a href="#product/10">
 				<div class="col-xs-3 home-services" style="border:none;padding-bottom:0">
 					<img src="imgs/home/weixinkaifa.png" alt="">
-					<p>微信应用开发</p>
+					<p>微信商城开发</p>
 				</div>
 			</a>
 			<a href="#product/21">
@@ -22,16 +22,16 @@
 					<p>114商机通</p>
 				</div>
 			</a>
-			<a href="#product/3">
+			<a href="#product/16">
 				<div class="col-xs-3 home-services" style="border:none;padding-bottom:0">
 					<img src="imgs/home/lift_adv.png" alt="">
-					<p>官网建设</p>
+					<p>会议邀约</p>
 				</div>
 			</a>
-			<a href="#product/9">
+			<a href="#product/34">
 				<div class="col-xs-3 home-services" style="border:none;padding-bottom:0">
 					<img src="imgs/home/search.png" alt="">
-					<p>APP开发</p>
+					<p>百度竞价排名</p>
 				</div>
 			</a>
 			<a href="#product/23">
@@ -55,55 +55,56 @@
 			<a href="#product/31">
 				<div class="col-xs-3 home-services">
 					<img src="imgs/home/baiduyun.png" alt="">
-					<p>百度开放云</p>
+					<p>百度云服务器</p>
 				</div>
 			</a>
 			<a href="#home/discount">
 				<div class="discount-container">
-					<div class = "col-xs-4">
-						<img src="imgs/home/discount.jpg" alt="">
-					</div>
-					<div class="col-xs-8">
-						<span class="start-time">距离开始</span>
-						<span class = "time-container">00</span>
-						<span class="colom">:</span>
-						<span class = "time-container">07</span>
-						<span class="colom">:</span>
-						<span class = "time-container">13</span>
-						<span class = "more">更多>></span>
-					</div>
+					<img src="imgs/home/liuchengtu.png" alt="" style="width: 100%">
+					<!--<div class = "col-xs-4">-->
+						<!--<img src="imgs/home/discount.jpg" alt="">-->
+					<!--</div>-->
+					<!--<div class="col-xs-8">-->
+						<!--<span class="start-time">距离开始</span>-->
+						<!--<span class = "time-container">00</span>-->
+						<!--<span class="colom">:</span>-->
+						<!--<span class = "time-container">07</span>-->
+						<!--<span class="colom">:</span>-->
+						<!--<span class = "time-container">13</span>-->
+						<!--<span class = "more">更多>></span>-->
+					<!--</div>-->
 				</div>
 			</a>
 
 			<div class="task-container col-xs-12">
-				<a href="#product/5">
+				<a href="#product/24">
 					<div class="col-xs-6" style = "border-right:1px solid #f5f5f5;border-bottom:1px solid #f5f5f5;background-image:url('imgs/home/background_1.png');padding-left:0;background-position: right 8px center;">
-						<p class="title">视觉设计</p>
-						<p class="words">非凡视觉，眼球经济</p>
+						<p class="title">百度舆情</p>
+						<p class="words">互联网专业分析系统</p>
 						<span class="test-button">
 						</span>
 					</div>
 				</a>
-				<a href="#product/4">
+				<a href="#product/3">
 					<div class="col-xs-6" style = "border-bottom:1px solid #f5f5f5;background-image:url('imgs/home/background_2.png');">
-						<p class="title">电商交易平台</p>
-						<p class="words">模块开发，自由定制</p>
+						<p class="title">官网建设</p>
+						<p class="words">一流的技术，完善的服务</p>
 						<span class="test-button">
 						</span>
 					</div>
 				</a>
-				<a href="#product/22">
+				<a href="#product/32">
 					<div class="col-xs-6" style = "border-right:1px solid #f5f5f5;background-image:url('imgs/home/background_3.png');padding-left:0;background-position: right 8px center;">
-						<p class="title">微信营销</p>
-						<p class="words">丰富应用，个性营销</p>
+						<p class="title">短信验证码</p>
+						<p class="words">5秒到达，支持三网</p>
 						<span class="test-button">
 						</span>
 					</div>
 				</a>
-				<a href="#product/28">
+				<a href="#product/33">
 					<div class="col-xs-6" style = "background-image:url('imgs/home/background_4.png');">
-						<p class="title">大数据营销诊断</p>
-						<p class="words">因为需求，所以精准</p>
+						<p class="title">内容分发网</p>
+						<p class="words">提升服务器性能神器</p>
 						<span class="test-button">
 						</span>
 					</div>
@@ -121,11 +122,10 @@
 			</div>
 			<div class="col-xs-8 hxj_search_right">
 				<p class="hxj_search_p1">{{data.name}}</p>
-				<p class="hxj_search_p2">{{data.description}}</p>
-
-				<div class="pull-right" style="color: #7C7C7C;">
-				  <img src="imgs/search_list/huo.png" width="12px" style="position: relative;top: -3px;"/>10000
-				</div>
+				<p class="hxj_search_p2">{{data.description | limitTo:30}}{{data.description.length>30?'...':''}}</p>
+				<!--<div class="pull-right" style="color: #7C7C7C;">-->
+				  <!--<img src="imgs/search_list/huo.png" width="12px" style="position: relative;top: -3px;"/>10000-->
+				<!--</div>-->
 			</div>
 		</div>
 	</a>

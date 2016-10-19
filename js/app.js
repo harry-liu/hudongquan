@@ -127,7 +127,7 @@ app.config(['$routeProvider', function($routeProvider) {
 		controller: 'HomeCtrl',
 		resolve:{
 			listData:function(FetchData){
-				var url = "categories/get?id=5";
+				var url = "productions";
 				return FetchData.getPublicAPI(url);
 			}
 		}
@@ -229,6 +229,16 @@ app.config(['$routeProvider', function($routeProvider) {
 		resolve:{
 			videoListData:function(FetchData){
 				var url = 'videos';
+				return FetchData.getPublicAPI(url);
+			}
+		}
+	}).
+	when('/teach/:id', {
+		templateUrl: 'teach.html',
+		controller: 'TeachListCtrl',
+		resolve:{
+			videoListData:function(FetchData,$route){
+				var url = 'videos?production='+$route.current.params.id;
 				return FetchData.getPublicAPI(url);
 			}
 		}
@@ -436,6 +446,17 @@ app.config(['$routeProvider', function($routeProvider) {
 		controller: 'PersonalDetailCtrl',
 		resolve:{
 			personalData:function(FetchData,AuthenticationService){
+				var url = 'user';
+				var token = AuthenticationService.getAccessToken();
+				return FetchData.getData(url,token);
+			}
+		}
+	}).
+	when('/zmop/:status', {
+		templateUrl: 'ZMOP.html',
+		controller: 'ZMOPDetailCtrl',
+		resolve:{
+			ZMOPData:function(FetchData,AuthenticationService){
 				var url = 'user';
 				var token = AuthenticationService.getAccessToken();
 				return FetchData.getData(url,token);

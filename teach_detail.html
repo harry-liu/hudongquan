@@ -34,11 +34,14 @@
                 </a>
                 </span>
                 <span class="col-xs-7 pl">
-                     <span class="text_1">{{comment.username}}</span><br/>
-                     <span class="text_2">{{comment.substance}}</span>
+                     <span class="text_1">{{comment.username}}</span>
+                     <!--<span class="text_2"></span>-->
                  </span>
                 <span class="col-xs-3 shijian">
                     <span>{{comment.created_at|limitTo : 10}}</span>
+                </span>
+                <span class="col-xs-10 col-xs-offset-2" style="text-overflow: ellipsis;overflow: hidden;max-height: 40px;white-space: nowrap;">
+                    {{comment.substance}}
                 </span>
             </li>
         </ul>
