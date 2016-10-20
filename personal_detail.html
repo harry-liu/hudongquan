@@ -32,9 +32,8 @@
 		</div> -->
 		<div class="col-xs-12 hc_perlist hc_data02" ng-click="goToZMOP()">
 			<h1 class="pull-left">芝麻信用认证</h1>
-			<span>未认证</span>
+			<span ng-if="!user.certificated"><img src="imgs/weitongguo.png" alt="" style="width: 16px;height: 16px;margin-bottom: 2px;margin-right: 10px;">未认证</span>
+            <span ng-if="user.certificated"><img src="imgs/tongguo.png" alt="" style="width: 16px;height: 16px;margin-bottom: 2px;margin-right: 10px;">已认证</span>
 		</div>
-
 	</div>
-
 </div>

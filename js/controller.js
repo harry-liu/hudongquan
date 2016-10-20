@@ -1,6 +1,6 @@
 var interactiveControllers = angular.module('interactiveControllers', []);
 
-interactiveControllers.controller('BodyControl', function($scope,$window,locals,$location,$rootScope,$timeout,$route,$q,FetchData,OpenAlertBox) {
+interactiveControllers.controller('BodyControl', function($scope,$window,locals,$location,$rootScope,$timeout,$route) {
 	$scope.showTM = true;
 	$scope.showBM = true;
 	$scope.$on('hideTM', function(e,data){
@@ -1197,13 +1197,11 @@ interactiveControllers.controller('PersonalDetailCtrl', function(OpenAlertBox,$s
 		        $scope.user.avatarUrl = data.data.url;
 		        $scope.user.avatarId = data.data.id;
         	})
-        }   
+        }
     };
 
-    $rootScope.loadingData = false;
     $scope.user = personalData.data.user;
-    $scope.user.avatarId = personalData.data.user.avatar_id;
-
+	$scope.user.avatarId = personalData.data.user.avatar_id;
     $scope.$on('pushPersonalInformation',function(){
     	if(!$scope.user.username){
     		OpenAlertBox.openAlert('请输入姓名');
@@ -1211,10 +1209,10 @@ interactiveControllers.controller('PersonalDetailCtrl', function(OpenAlertBox,$s
     	else if(!$scope.user.card_id){
     		OpenAlertBox.openAlert('请输入身份证号');
     	}
-    	else{    	
+    	else{
     		var url = 'user/edit';
     		var token = AuthenticationService.getAccessToken();
-    		var data = 'avatar='+$scope.user.avatarId+'&username='+$scope.user.username+'&card_id='+$scope.user.card_id+'&alipay_account='+$scope.user.alipay_account;
+    		var data = 'avatar='+$scope.user.avatarId+'&username='+$scope.user.username+'&alipay_account='+$scope.user.alipay_account;
     		PushData.push(url,data,token).then(function(data){
     			if(data.data.message == 'success'){
 					OpenAlertBox.openAlert('修改成功！').then(function(data){
@@ -1229,16 +1227,18 @@ interactiveControllers.controller('PersonalDetailCtrl', function(OpenAlertBox,$s
     });
 
 	$scope.goToZMOP = function () {
-		if(true){
+		if($scope.user.certificated){
 			$location.path('/zmop/pass');
 		}
 		else{
 			$location.path('/zmop/fail');
 		}
-	}
+	};
+
+	$rootScope.loadingData = false;
 });
 
-interactiveControllers.controller('ZMOPDetailCtrl', function($scope,$rootScope,$routeParams) {
+interactiveControllers.controller('ZMOPDetailCtrl', function($scope,$rootScope,$routeParams,ZMOPData,PushData,AuthenticationService,OpenAlertBox,$window) {
 	$scope.$emit('hideTM',true);
 	$scope.$emit('hideBM',false);
 	var change = {
@@ -1247,16 +1247,59 @@ interactiveControllers.controller('ZMOPDetailCtrl', function($scope,$rootScope,$
 	};
 	$scope.$emit('changeTM',change);
 
-	if($routeParams.status == 'pass'){
-		$scope.pass = true;
+	$scope.pass = $routeParams.status == 'pass';
+
+	$scope.userData = ZMOPData.data.user;
+
+	if($scope.pass){
+		var userName = "";
+		for (var i = 0;i < $scope.userData.real_name.length;i++){
+			if (i == 0){
+				userName = $scope.userData.real_name[0];
+			}
+			else{
+				userName += '*';
+			}
+		}
+		$scope.userData.real_name = userName;
+
+
+		var userCardId = "";
+		for (var i = 0;i < $scope.userData.card_id.length;i++){
+			if (i == 0||i == $scope.userData.card_id.length-1||i == $scope.userData.card_id.length-2||i == $scope.userData.card_id.length-3||i == $scope.userData.card_id.length-4){
+				userCardId += $scope.userData.card_id[i];
+			}
+			else{
+				userCardId += '*';
+			}
+		}
+		$scope.userData.card_id = userCardId;
 	}
-	else{
-		$scope.pass = false;
-	}
+
+	$scope.check = true;
+	$scope.yanzheng = function () {
+		if($scope.check){
+			$scope.check = false;
+			var url = 'user/zmop';
+			var data = 'real_name='+$scope.userData.real_name+'&card_id='+$scope.userData.card_id;
+			var token = AuthenticationService.getAccessToken();
+			PushData.push(url,data,token).then(function (data) {
+				if(data.data.message == 'failed'){
+					OpenAlertBox.openAlert('审核未通过');
+					$scope.check = true;
+				}
+				else{
+					OpenAlertBox.openAlert('审核通过!');
+					$scope.check = true;
+					$window.history.back();
+				}
+			});
+		}
+
+	};
 
 	$rootScope.loadingData = false;
 });
-
 
 interactiveControllers.controller('AddAliPayCtrl', function($scope,$rootScope) {
 	$rootScope.loadingData = false;
