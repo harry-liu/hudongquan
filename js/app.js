@@ -83,31 +83,31 @@ app.run(['$rootScope', '$location','locals','AuthenticationService','FetchData',
 	$anchorScroll.yOffset = 44;   // always scroll by 50 extra pixels
 
 	$rootScope.$on('$routeChangeStart', function(evt, next, current){
-	//check black cover is opern
-	if(!$rootScope.hideBlackCover){
-		if(next.originalPath == "/search_list/:id"||next.originalPath == "/product_list/:id"){
+		//check black cover is opern
+		// if(!$rootScope.hideBlackCover){
+		// 	if(next.originalPath == "/search_list/:id"||next.originalPath == "/product_list/:id"){
+		// 		$rootScope.loadingData = true;
+		// 	}
+		// 	else{
+		// 		evt.preventDefault();
+		// 	}
+		// }
+		// else{
 			$rootScope.loadingData = true;
-		}
-		else{
-			evt.preventDefault();
-		}
-	}
-	else{
-		$rootScope.loadingData = true;
 
-		//判断是否有填写订单数据
-		if(next.originalPath != "/product_buy/:id"&&next.originalPath != "/insert_user"){
-			var ob = {};
-			NewOrder.saveOrderData(ob);
-		}
+			//判断是否有填写订单数据
+			if(next.originalPath != "/product_buy/:id"&&next.originalPath != "/insert_user"){
+				var ob = {};
+				NewOrder.saveOrderData(ob);
+			}
 
-		//判断是否第一次打开app
-		if(!locals.get('alreadyLogIn',false)){
-			evt.preventDefault();
-			$location.path('/new_user');
-			locals.set('alreadyLogIn',true)
-		}
-	}
+			//判断是否第一次打开app
+			if(!locals.get('alreadyLogIn',false)){
+				evt.preventDefault();
+				$location.path('/new_user');
+				locals.set('alreadyLogIn',true)
+			}
+		//}
 	});
 }]);
 

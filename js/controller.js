@@ -721,7 +721,7 @@ interactiveControllers.controller('QRPaymentCtrl', function($scope,$rootScope,ge
 		FetchData.getData(url,token).then(function(data){
 			if(data.data.result){
 				console.log(true);
-				$location.path('/qr_payment_finish/'+getQRCode.data.out_trade_no);
+				$location.path('/qr_payment_finish/'+getQRCode.data.out_trade_no).replace();
 			}
 			else{
 				console.log(false);
@@ -734,7 +734,7 @@ interactiveControllers.controller('QRPaymentCtrl', function($scope,$rootScope,ge
 	});
 });
 
-interactiveControllers.controller('QRPaymentFinishCtrl', function($scope,$rootScope,bookingDetailData,$location) {
+interactiveControllers.controller('QRPaymentFinishCtrl', function($scope,$rootScope,bookingDetailData,$window,$location) {
 	$scope.$emit('hideTM',true);
 	$scope.$emit('hideBM',false);
 	var change = {
@@ -748,7 +748,10 @@ interactiveControllers.controller('QRPaymentFinishCtrl', function($scope,$rootSc
 	$rootScope.loadingData = false;
 
 	$scope.$on('finishBookingQRPayment', function(){
-		$location.path('/booking_list');
+		// $window.history.back();
+		// $window.history.back();
+		// $window.history.back();
+		$location.path('/booking_list').replace().replace().replace();
 	})
 });
 
@@ -779,13 +782,18 @@ interactiveControllers.controller('OfflinePaymentCtrl', function(paymentData,Ope
     };
 
     $scope.submit = function(){
-    	var id = $route.current.params.id;
-    	var url = 'orders/instrument?id='+id+'&instrument='+$scope.imageID;
-    	var token = AuthenticationService.getAccessToken();
-    	FetchData.getData(url,token).then(function(data){
-			OpenAlertBox.openAlert('成功');
-			$window.history.back();
-    	})
+		if($scope.imageUrl){
+			var id = $route.current.params.id;
+			var url = 'orders/instrument?id='+id+'&instrument='+$scope.imageID;
+			var token = AuthenticationService.getAccessToken();
+			FetchData.getData(url,token).then(function(data){
+				OpenAlertBox.openAlert('成功');
+				$window.history.back();
+			})
+		}
+		else{
+			OpenAlertBox.openAlert('请先上传图片');
+		}
     }
 });
 

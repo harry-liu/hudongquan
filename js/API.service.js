@@ -135,7 +135,7 @@ APIService.factory('PushData', ['$http','PublicURL','Upload',function($http,Publ
     } 
 }]);
 
-APIService.factory('LogService', function LogService($http,PublicURL,$location) {  
+APIService.factory('LogService', function LogService($http,PublicURL,$location,OpenAlertBox) {
     return {  
         login: function (phone,code) {
             return $http({
@@ -152,6 +152,9 @@ APIService.factory('LogService', function LogService($http,PublicURL,$location) 
                 console.log(response);
                 if(response.status == -1){
                     $location.path('/disconnect');
+                }
+                else if(response.status){
+                    OpenAlertBox.openAlert('请输入正确验证码');
                 }
                 else{
                     $location.path('/login');
